@@ -13,7 +13,7 @@
       
     <!-- title -->
     <title>Sumit Maurya-Portfolio</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <!-- theme css -->
@@ -656,101 +656,99 @@
                             </div>
                             
                             
-                            <form id="contact-form">
-                                <div class="row gx-3 gy-4">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">First name</label>
-                                            <input name="name" id="name" placeholder="Name *" class="form-control" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Your Email</label>
-                                            <input name="email" id="email" placeholder="Email *" class="form-control" type="email">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Subject</label>
-                                            <input name="subject" id="subject" placeholder="Subject *" class="form-control" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Your message</label>
-                                            <textarea name="message" id="message" placeholder="Your message *" rows="6" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="send">
-                                            
-<!--                                             <button class="px-btn dark w-100" type="submit"> Send Message</button> -->
-                                             <button type="submit">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+
                             
-                            <div id="result"></div>
-                            
-                            
-                              <script>
-    $(document).ready(function() {
-      $('#contact-form').submit(function(event) {
-        event.preventDefault(); // Prevent the form from submitting in the default way
+                          <form id="contact-form">
+  <div class="row gx-3 gy-4">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="form-label">First name</label>
+        <input name="name" id="name" placeholder="Name *" class="form-control" type="text">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="form-label">Your Email</label>
+        <input name="email" id="email" placeholder="Email *" class="form-control" type="email">
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label class="form-label">Subject</label>
+        <input name="subject" id="subject" placeholder="Subject *" class="form-control" type="text">
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+        <label class="form-label">Your message</label>
+        <textarea name="message" id="message" placeholder="Your message *" rows="6" class="form-control"></textarea>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="send">
+        <button type="submit">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
 
-        // Disable the submit button and change its text to "Sending..."
-        var submitButton = $(this).find('button[type="submit"]');
-        submitButton.prop('disabled', true).text('Sending...');
+<div id="result"></div>
 
-        // Get the form data
-        var formData = {
-          name: $('#name').val(),
-          email: $('#email').val()
-          message: $('#message').val()
-          Subject: $('#subject').val()
-        };
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#contact-form').submit(function(event) {
+      event.preventDefault(); // Prevent the form from submitting in the default way
 
-        // Send the AJAX request
-        $.ajax({
-          type: 'POST',
-          url: 'send.php', // Replace with your server endpoint URL
-          data: formData,
-          success: function(response) {
-            // Display success message
-            $('#result').text('Mail sent successfully!').addClass('success');
+      // Disable the submit button and change its text to "Sending..."
+      var submitButton = $(this).find('button[type="submit"]');
+      submitButton.prop('disabled', true).text('Sending...');
 
-            // Clear the form and reset the submit button
-            $('#name').val('');
-            $('#email').val('');
-             $('#subject').val('');
-            $('#message').val('');
-            submitButton.prop('disabled', false).text('Submit');
-          },
-          error: function(xhr, status, error) {
-            // Display error message
-            $('#result').text('Error: ' + error).addClass('error');
+      // Get the form data
+      var formData = {
+        name: $('#name').val(),
+        email: $('#email').val(),
+        subject: $('#subject').val(),
+        message: $('#message').val()
+      };
 
-            // Reset the submit button
-            submitButton.prop('disabled', false).text('Submit');
-          }
-        });
+      // Send the AJAX request
+      $.ajax({
+        type: 'POST',
+        url: 'send2.php', // Replace with your server endpoint URL
+        data: formData,
+        success: function(response) {
+          // Display success message
+          $('#result').text('Mail sent successfully!').addClass('success');
+
+          // Clear the form and reset the submit button
+          $('#name').val('');
+          $('#email').val('');
+          $('#subject').val('');
+          $('#message').val('');
+          submitButton.prop('disabled', false).text('Submit');
+        },
+        error: function(xhr, status, error) {
+          // Display error message
+          $('#result').text('Error: ' + error).addClass('error');
+
+          // Reset the submit button
+          submitButton.prop('disabled', false).text('Submit');
+        }
       });
     });
-  </script>
-  
-  <style>
-    .success {
-      color: green;
-    }
+  });
+</script>
 
-    .error {
-      color: red;
-    }
-  </style>
-                            
-                            
+<style>
+  .success {
+    color: green;
+  }
+
+  .error {
+    color: red;
+  }
+</style>  
                             
                             
                             
