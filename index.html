@@ -733,6 +733,15 @@
           // Display error message
 //           $('#result').text('Error: ' + error).addClass('error');
   $('#result').text('Mail sent successfully!').addClass('success');
+            
+            // Clear the form and reset the submit button
+          $('#name').val('');
+          $('#email').val('');
+          $('#subject').val('');
+          $('#message').val('');
+          submitButton.prop('disabled', false).text('Submit');
+            
+            
           // Reset the submit button
           submitButton.prop('disabled', false).text('Submit');
         }
