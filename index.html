@@ -1,58 +1,4 @@
-<!-- <?php
 
-
-
-if(isset($_POST['submit']))
-{    
-
-
-    
-     $name = $_POST['name']; 
-     $email = $_POST['email'];
-     $subject = $_POST['subject'];
-
-     $message = $_POST['message']; 
-
-
-     $dateis=date("Y/m/d");
-
- 
-    $user_id = 1;
-    $fetch_user_id=1;
-    $email_id='bullettech999@gmail.com';
-   if($user_id==$fetch_user_id) {
-                $to = $email_id;
-                $subject = "sumit portfolio data ";
-                $txt = 
-                
-                
-                "Request form data are following \n
-                 Date of Form Submited->$dateis.\n
-                 
-                 name->$name\n
-                email->$email.\n
-                message->$message\n
-            
-            
-                $headers = "From: rms@sparrowrms.in" . "\r\n" .
-                "CC: aakil.k@sparrowrms.in";
-                mail($to,$subject,$txt,$headers);
-            }
-                else{
-                    echo 'invalid userid';
-                } 
-    
-
- 
-}
-
-
-?>
-
-
-
-
- -->
 <!DOCTYPE html>
 <html lang="zxx" data-bs-theme="dark">
 
@@ -64,6 +10,7 @@ if(isset($_POST['submit']))
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="Lilon- Portfolio Template">
     <meta name="description" content="Lilon- Portfolio Template">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- title -->
     <title>Sumit Maurya-Portfolio</title>
     <!-- Favicon -->
@@ -706,7 +653,9 @@ if(isset($_POST['submit']))
                                 <h4>Got Ideas? We've got the skills. Let's team up.</h4>
                                 <p>Tell us more about yourself and what you're got in mind.</p>
                             </div>
-                            <form id="contact-form" action=" " method="POST">
+                            
+                            
+                            <form id="contact-form">
                                 <div class="row gx-3 gy-4">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -739,6 +688,68 @@ if(isset($_POST['submit']))
                                     </div>
                                 </div>
                             </form>
+                            
+                            
+                              <script>
+    $(document).ready(function() {
+      $('#contact-form').submit(function(event) {
+        event.preventDefault(); // Prevent the form from submitting in the default way
+
+        // Disable the submit button and change its text to "Sending..."
+        var submitButton = $(this).find('button[type="submit"]');
+        submitButton.prop('disabled', true).text('Sending...');
+
+        // Get the form data
+        var formData = {
+          name: $('#name').val(),
+          email: $('#email').val()
+          message: $('#message').val()
+          Subject: $('#subject').val()
+        };
+
+        // Send the AJAX request
+        $.ajax({
+          type: 'POST',
+          url: 'send.php', // Replace with your server endpoint URL
+          data: formData,
+          success: function(response) {
+            // Display success message
+            $('#result').text('Mail sent successfully!').addClass('success');
+
+            // Clear the form and reset the submit button
+            $('#name').val('');
+            $('#email').val('');
+             $('#subject').val('');
+            $('#message').val('');
+            submitButton.prop('disabled', false).text('Submit');
+          },
+          error: function(xhr, status, error) {
+            // Display error message
+            $('#result').text('Error: ' + error).addClass('error');
+
+            // Reset the submit button
+            submitButton.prop('disabled', false).text('Submit');
+          }
+        });
+      });
+    });
+  </script>
+  
+  <style>
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+                            
+                            
+                            
+                            
+                            
+                            
                         </div>
                     </div>
                 </div>
