@@ -1,26 +1,26 @@
+
 <?php
-// Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Get the form data
   $name = $_POST['name'];
   $email = $_POST['email'];
     
-     $subject = $_POST['subject'];
-  $message = $_POST['message'];
+     $sub = $_POST['subject'];
+  $mes = $_POST['message'];
 
   // Perform any necessary validation on the form data
   // ...
 
   // Send the email
   $to = 'bullettech999@gmail.com'; // Replace with the actual recipient email address
-  $subjec = '$subject';
+  $subject = $sub;
   $message = "Name: $name\n
-              Subject: $subject\n
+              Subject: $sub\n
               Email: $email\n
-              Message: $message";
+              Message: $mes";
   $headers = "From: sumitsaini@all2z.com"; // Replace with the actual sender email address
 
-  if (mail($to, $subjec, $message, $headers)) {
+  if (mail($to, $subject, $message, $headers)) {
     // Email sent successfully
     $response = array('status' => 'success', 'message' => 'Mail sent successfully!');
     echo json_encode($response);
