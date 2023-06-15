@@ -1,50 +1,37 @@
 <?php
-
-
-
-if(isset($_POST['submit']))
-{    
-
-
+// Check if the request method is POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Get the form data
+  $name = $_POST['name'];
+  $email = $_POST['email'];
     
-     $name = $_POST['name']; 
-     $email = $_POST['email'];
      $subject = $_POST['subject'];
+  $message = $_POST['message'];
 
-     $message = $_POST['message']; 
+  // Perform any necessary validation on the form data
+  // ...
 
+  // Send the email
+  $to = 'bullettech999@gmail.com'; // Replace with the actual recipient email address
+  $subjec = '$subject';
+  $message = "Name: $name\n
+              Subject: $subject\n
+              Email: $email\n
+              Message: $message";
+  $headers = "From: sumitsaini@all2z.com"; // Replace with the actual sender email address
 
-     $dateis=date("Y/m/d");
-
- 
-    $user_id = 1;
-    $fetch_user_id=1;
-    $email_id='bullettech999@gmail.com';
-   if($user_id==$fetch_user_id) {
-                $to = $email_id;
-                $subject = "sumit portfolio data ";
-                $txt = 
-                
-                
-                "Request form data are following \n
-                 Date of Form Submited->$dateis.\n
-                 
-                 name->$name\n
-                email->$email.\n
-                message->$message\n
-            
-            
-                $headers = "From: rms@sparrowrms.in" . "\r\n" .
-                "CC: aakil.k@sparrowrms.in";
-                mail($to,$subject,$txt,$headers);
-            }
-                else{
-                    echo 'invalid userid';
-                } 
-    
-
- 
+  if (mail($to, $subjec, $message, $headers)) {
+    // Email sent successfully
+    $response = array('status' => 'success', 'message' => 'Mail sent successfully!');
+    echo json_encode($response);
+  } else {
+    // Failed to send email
+    $response = array('status' => 'error', 'message' => 'Failed to send email.');
+    echo json_encode($response);
+  }
+} else {
+  // Invalid request method
+  $response = array('status' => 'error', 'message' => 'Invalid request method.');
+  echo json_encode($response);
 }
-
-
 ?>
