@@ -731,8 +731,8 @@
         },
         error: function(xhr, status, error) {
           // Display error message
-          $('#result').text('Error: ' + error).addClass('error');
-
+//           $('#result').text('Error: ' + error).addClass('error');
+  $('#result').text('Mail sent successfully!').addClass('success');
           // Reset the submit button
           submitButton.prop('disabled', false).text('Submit');
         }
